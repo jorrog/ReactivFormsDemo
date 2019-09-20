@@ -1,0 +1,57 @@
+<div>
+
+  <h2>Form Group</h2>
+
+  <form
+    [formGroup]="loginForm"
+    (ngSubmit)="formSubmit()"
+    (keyup.enter)="formSubmit()"
+  >
+
+    <div>
+      <label>
+        Email:
+        <input type="email" formControlName="email" name="email"/>
+      </label>
+
+      <div *ngIf="loginForm.get('email').dirty && loginForm.get('email').hasError('required')">
+        <div> Email Required </div>
+      </div>
+
+      <div *ngIf="loginForm.get('email').dirty && loginForm.get('email').hasError('email')">
+        <div> Invalid Email </div>
+      </div>
+
+    </div>
+
+    <div>
+      <label>
+        Name:
+        <input type="password" formControlName="password" name="password"/>
+      </label>
+
+      <div *ngIf="loginForm.get('password').dirty && loginForm.get('password').hasError('required')">
+        <div> Password Required </div>
+      </div>
+    </div>
+
+    <div>
+      <button type="button" (click)="formSubmit()">Submit</button>
+    </div>
+
+  </form>
+
+
+  <div>
+    <h2>Single Form Control</h2>
+    <label>
+      Name:
+      <input type="text" [formControl]="singleFormControl">
+    </label>
+
+    <div>
+      <button type="button" (click)="getFromControlValue()">Get value</button>
+    </div>
+  </div>
+
+</div>
